@@ -131,14 +131,8 @@
             <option value="pt">
               Portuguese
             </option>
-            <option value="ja">
-              Japanese
-            </option>
-            <option value="ko">
-              Korean
-            </option>
-            <option value="zh">
-              Chinese (Simplified)
+            <option value="nl">
+              Dutch
             </option>
           </select>
 
@@ -277,7 +271,8 @@ const handleTranslate = async () => {
   try {
     const result = await translate({
       text: sourceText.value,
-      targetLanguage: targetLanguage.value
+      targetLanguage: targetLanguage.value,
+      sourceLanguage: 'en'
     })
     translatedText.value = result.translatedText
   } catch (err) {
