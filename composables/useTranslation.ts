@@ -18,20 +18,20 @@ export const useTranslation = () => {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        onRequest({ options }) {
+        onRequest ({ options }) {
           // Handle any request preprocessing
           console.log('Making request to:', options.baseURL)
         },
-        onRequestError({ error }) {
+        onRequestError ({ error }) {
           // Handle request errors
           console.error('Request error:', error)
           throw new Error('Failed to make translation request')
         },
-        onResponse({ response }) {
+        onResponse ({ response }) {
           // Handle successful responses
           console.log('Response received:', response.status)
         },
-        onResponseError({ error }) {
+        onResponseError ({ error }) {
           // Handle response errors
           console.error('Response error:', error)
           throw new Error('Failed to translate text')
