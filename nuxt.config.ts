@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
       awsRegion: process.env.NUXT_PUBLIC_AWS_REGION || 'us-east-1'
     }
   },
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   nitro: {
     devProxy: {
       '/api': {
-        target: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000',
+        target: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
         changeOrigin: true,
         prependPath: true
       }
