@@ -1,25 +1,34 @@
 // nuxt.config.ts
-export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss'],
+import { defineNuxtConfig } from 'nuxt/config'
 
+export default defineNuxtConfig({
+  modules: ['@nuxtjs/tailwindcss'],
+  css: ['~/assets/css/main.css'],
+  devtools: { enabled: true },
+  plugins: [
+    '~/plugins/azure-auth.ts'
+  ],
+  devServer: {
+    port: 3001
+  },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
-      awsRegion: process.env.NUXT_PUBLIC_AWS_REGION || 'us-east-1'
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || `http://localhost:${process.env.DEV_PORT}`,
+      awsRegion: process.env.NUXT_PUBLIC_AWS_REGION || 'us-east-1',
+      azureClientId: process.env.AZURE_CLIENT_ID,
+      azureTenantId: process.env.AZURE_TENANT_ID,
+      authRedirectUri: process.env.AUTH_REDIRECT_URI
     }
   },
-
   nitro: {
     devProxy: {
       '/api': {
-        target: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
+        target: process.env.NUXT_PUBLIC_API_BASE || `http://localhost:${process.env.DEV_PORT}`,
         changeOrigin: true,
         prependPath: true
       }
     }
   },
-
   app: {
     head: {
       title: 'Translation Service',
